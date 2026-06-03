@@ -1,0 +1,26 @@
+---
+- name: My playbook
+  hosts: servers
+  become: true
+
+  tasks:
+    - name: Create a directory
+      file:
+        path: /home/ubuntu/ansibletest
+        state: directory
+        owner: ubuntu
+        group: ubuntu
+        mode: '0755'
+
+    - name: Create a file inside it
+      file:
+        path: /home/ubuntu/ansibletest/hello.txt
+        state: touch
+        owner: ubuntu
+        group: ubuntu
+        mode: '0644'
+
+    - name: Install curl
+      apt:
+        name: curl
+        state: present
